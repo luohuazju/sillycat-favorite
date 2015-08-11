@@ -10,12 +10,12 @@ angular.module('favorite').config(['$urlRouterProvider', '$stateProvider', '$loc
     $stateProvider
       .state('placeList', {
         url: '/places',
-        templateUrl: 'client/places/place-list.ng.html',
+        templateUrl: 'client/places/views/place-list.ng.html',
         controller: 'PlacesListController'
       })
       .state('placeDetail', {
         url: '/places/:placeId',
-        templateUrl: 'client/places/place-detail.ng.html',
+        templateUrl: 'client/places/views/place-detail.ng.html',
         controller: 'PlacesDetailController'
       });
 
