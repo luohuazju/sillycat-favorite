@@ -1,0 +1,18 @@
+<div ng-controller="PlacesListController">
+
+	<form>
+		<label>Name</label>
+		<input ng-model="newItem.name">
+		<label>Desc</label>
+		<input ng-model="newItem.desc">
+		<button ng-click="items.save(newItem); newItem='';">Add Place</button>
+	</form>
+
+	<ul>
+		<li ng-repeat="item in items">
+			<a href="/places/{{item._id}}">{{item.name}}</a>
+			<p>{{item.desc}}</p>
+			<button ng-click="remove(item)">X</button>
+		</li>
+	</ul>
+</div>
