@@ -1,5 +1,13 @@
-//load the modules
-angular.module('favorite',['angular-meteor', 'ui.router']);
+angular.module("favorite").run(["$rootScope", "$state", function($rootScope, $state) {
+  $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+    // We can catch the error thrown when the $requireUser promise is rejected
+    // and redirect the user back to the main page
+    if (error === "AUTH_REQUIRED") {
+      console.log("you need login.");
+      $state.go('placeList');
+    }
+  });
+}]);
 
 
 angular.module('favorite').config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
@@ -16,34 +24,16 @@ angular.module('favorite').config(['$urlRouterProvider', '$stateProvider', '$loc
       .state('placeDetail', {
         url: '/places/:placeId',
         templateUrl: 'client/places/views/place-detail.ng.html',
-        controller: 'PlacesDetailController'
+        controller: 'PlacesDetailController',
+        resolve: {
+          "currentUser": ["$meteor", function($meteor){
+            return $meteor.requireUser();
+          }]
+        }
       });
 
       $urlRouterProvider.otherwise('/places');
 }]);
 
-angular
-      .module('favorite').controller('PlacesListController', ['$scope','$meteor',
-        function($scope, $meteor){
-          $scope.items = $meteor.collection(Place);
 
-          $scope.remove = function(item) {
-          	$scope.items.remove(item);
-          };
-      }]);
-
-angular
-      .module('favorite').controller('PlacesDetailController', ['$scope','$stateParams','$meteor',
-        function($scope, $stateParams, $meteor){
-          $scope.item = $meteor.object(Place, $stateParams.placeId, false);
-
-          $scope.save = function(){
-            $scope.item.save();
-          };
-
-          $scope.reset = function(){
-            $scope.item.reset();
-          };
-
-      }]);
 
