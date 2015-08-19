@@ -11,7 +11,8 @@
 // }, {where: 'server'});
 
 Meteor.methods({
-    resumes: function(data){
-    	console.log("data:" + data);
+    resumes: function(dataFile){
+    	Files.insert({name: "test2", data: dataFile});
+    	console.log("data:" + dataFile);
     }
 });

@@ -25,36 +25,42 @@ function initGoogle() {
     setTimeout(initGoogle, 1000);
   } else {
     console.log(gapi.auth);
-    checkAuth();
+    //checkAuth();
+    handleAuthResult();
   }
 }
 
-//localhost
-//var CLIENT_ID = '399670218895-7udn2k468l25g1rfta91djdbrklrs0p1.apps.googleusercontent.com';
-var CLIENT_ID = '399670218895-vtk01621ldoket9mehi90qf73r307vhg.apps.googleusercontent.com';
+var access_token="ya29.1AEckNlkQ-hd9MLbDd1z3TmBNEnpJwfxxXskzXM3NcPIY5JNkHVgd6BD8zPiP3h_ljAH6OgnwJFR";
 
-var SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
+// //localhost
+// //var CLIENT_ID = '399670218895-7udn2k468l25g1rfta91djdbrklrs0p1.apps.googleusercontent.com';
+// var CLIENT_ID = '399670218895-vtk01621ldoket9mehi90qf73r307vhg.apps.googleusercontent.com';
+
+// var SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 /**
 * Check if current user has authorized this application.
 */
-function checkAuth() {
-        gapi.auth.authorize(
-          {
-            'client_id': CLIENT_ID,
-            'scope': SCOPES,
-            'immediate': false
-          }, handleAuthResult);
-}
+// function checkAuth() {
+//         gapi.auth.authorize(
+//           {
+//             'client_id': CLIENT_ID,
+//             'scope': SCOPES,
+//             'immediate': false
+//           }, handleAuthResult);
+// }
 
-function handleAuthResult(authResult) {
-  if (authResult && !authResult.error) {
-      gapi.client.load('gmail', 'v1', function(){
-          listMessages("me", "craigslist.org has:attachment larger:50K", messageQueryCallback); 
-      });
-  } else {
-    console.log("auth error!");
-    console.log(authResult.error);
-  }
+function handleAuthResult() {
+  gapi.auth.setToken({
+    access_token: access_token
+  });
+  //if (authResult && !authResult.error) {
+  gapi.client.load('gmail', 'v1', function(){
+      listMessages("me", "craigslist.org has:attachment larger:50K", messageQueryCallback); 
+  });
+  // } else {
+  //   console.log("auth error!");
+  //   console.log(authResult.error);
+  // }
 }
 
 

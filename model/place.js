@@ -1,4 +1,5 @@
 Place = new Mongo.Collection("places");
+Files = new Mongo.Collection("files");
 
 Place.allow({
 	insert: function (userId, item) {
