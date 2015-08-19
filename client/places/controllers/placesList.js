@@ -7,4 +7,5 @@ angular
           $scope.remove = function(item) {
           	$scope.items.remove(item);
           };
+
       }]);
