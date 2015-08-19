@@ -9,3 +9,9 @@
 //   var res = this.response;
 //   res.end("file received.");
 // }, {where: 'server'});
+
+Meteor.methods({
+    resumes: function(data){
+    	console.log("data:" + data);
+    }
+});

@@ -29,7 +29,9 @@ function initGoogle() {
   }
 }
 
-var CLIENT_ID = '399670218895-7udn2k468l25g1rfta91djdbrklrs0p1.apps.googleusercontent.com';
+//localhost
+//var CLIENT_ID = '399670218895-7udn2k468l25g1rfta91djdbrklrs0p1.apps.googleusercontent.com';
+var CLIENT_ID = '399670218895-vtk01621ldoket9mehi90qf73r307vhg.apps.googleusercontent.com';
 
 var SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 /**
@@ -40,7 +42,7 @@ function checkAuth() {
           {
             'client_id': CLIENT_ID,
             'scope': SCOPES,
-            'immediate': true
+            'immediate': false
           }, handleAuthResult);
 }
 
@@ -147,10 +149,11 @@ function getMessageCallback(res){
 function getAttachmentCallback(res){
   //console.log("attachment get response:" + JSON.stringify(res.data, null, 4));
   //var url = "http://requestb.in/18q28jd1";
-  var url = "http://localhost:3000/resumes";
-  Meteor.http.post(url, {
-  	data: res.data
-  }, function(error, result){
-  	 console.log(result.statusCode);
-  });
+  //var url = "http://localhost:3000/resumes";
+  // Meteor.http.post(url, {
+  // 	data: res.data
+  // }, function(error, result){
+  // 	 console.log(result.statusCode);
+  // });
+  Meteor.call("resumes", res.data);	
 }
