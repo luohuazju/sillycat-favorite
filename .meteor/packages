@@ -5,9 +5,11 @@
 # but you can also edit it by hand.
 
 meteor-platform
+http
 urigo:angular
 angularui:angular-ui-router
-accounts-ui
 accounts-base
+service-configuration
 accounts-google
-http
+accounts-github
+mizzao:bootstrap-3
