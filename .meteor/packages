@@ -8,8 +8,10 @@ meteor-platform
 http
 urigo:angular
 angularui:angular-ui-router
-accounts-base
 service-configuration
+accounts-base
+accounts-ui
 accounts-google
 accounts-github
 mizzao:bootstrap-3
+

@@ -9,6 +9,7 @@
 		    clientId: Meteor.settings.google_clientId,
 		    secret: Meteor.settings.google_secret
 		});
+
     });
 
     Accounts.onCreateUser(function (options, user) {
@@ -16,6 +17,8 @@
         var accessToken = user.services.google.accessToken,
             result,
             profile;
+
+        console.log("accessToekn=" + accessToken);
 
         result = Meteor.http.get("https://www.googleapis.com/oauth2/v3/userinfo", {
             headers: {"User-Agent": "Meteor/1.0"},
