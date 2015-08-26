@@ -1,8 +1,10 @@
 (function(){
     Template.user_loggedout.events({
         "click #login": function(e, tmpl){
-        	var scopes = ['https://www.googleapis.com/auth/gmail.readonly',
-        	              'https://www.googleapis.com/auth/userinfo.profile'];
+        	// var scopes = ['https://www.googleapis.com/auth/gmail.readonly',
+        	//               'https://www.googleapis.com/auth/userinfo.profile'];
+            var scopes = ['https://www.googleapis.com/auth/gmail.readonly'];
+
             Meteor.loginWithGoogle({
                 requestPermissions: scopes,
                 forceApprovalPrompt: true,
