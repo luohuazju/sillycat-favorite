@@ -1,0 +1,1 @@
+App.accessRule('https://*.googleusercontent.com');
